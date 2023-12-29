@@ -7,7 +7,6 @@ on:
   push:
     branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
 permissions:
       id-token: write
       contents: read
@@ -19,7 +18,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js
       uses: actions/setup-node@v3
       with:
         node-version: 18
@@ -34,5 +33,9 @@ jobs:
     - run: |
         ls
         aws s3 sync ./dist s3://gha-fun-dev
+    - uses: actions/upload-artifact@v4
+      with:
+          name: my-artifact
+          path: ./dist
       
     
