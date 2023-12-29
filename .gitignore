@@ -1,1 +1,4 @@
 node_modules/**
+dist/**
+iac/.terraform/**
+iac/.terraform*
